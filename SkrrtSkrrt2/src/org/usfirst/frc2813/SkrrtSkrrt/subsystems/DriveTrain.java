@@ -37,8 +37,8 @@ public class DriveTrain extends Subsystem {
     private final WPI_VictorSPX rightMotor = RobotMap.driveTrainRightMotor;
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
     
-    public static final double speedMax = 0.8;
-    public static final double deceleration = 0.9;
+    public static final double speedMax = 1;
+    public static final double deceleration = 0.5;
     
     public static double leftSpeed = 0;
     public static double rightSpeed = 0;
@@ -63,25 +63,22 @@ public class DriveTrain extends Subsystem {
     }
     
     public void tankDrive(Joystick Joystick, Joystick rightJoystick) {
-    	/* double leftPositiveNegative = 0;
-    	if(leftJoystick.getY() != 0) leftPositiveNegative = leftJoystick.getY()/Math.abs(leftJoystick.getY());
+    	double leftPositiveNegative = 0;
+    	if(Joystick.getRawAxis(1) != 0) leftPositiveNegative = Joystick.getRawAxis(1)/Math.abs(Joystick.getRawAxis(1));
     	else leftPositiveNegative = 0;
     	
     	double rightPositiveNegative = 0;
-    	if(rightJoystick.getY() != 0) rightPositiveNegative = rightJoystick.getY()/Math.abs(rightJoystick.getY());
+    	if(Joystick.getRawAxis(3) != 0) rightPositiveNegative = Joystick.getRawAxis(3)/Math.abs(Joystick.getRawAxis(3));
     	else rightPositiveNegative = 0;
     	
-    	robotDrive.tankDrive(Math.abs(leftJoystick.getY()) > speedMax ? speedMax*leftPositiveNegative : leftJoystick.getY(),
+    	/* robotDrive.tankDrive(Math.abs(leftJoystick.getY()) > speedMax ? speedMax*leftPositiveNegative : leftJoystick.getY(),
     						Math.abs(rightJoystick.getY()) > speedMax ? speedMax*rightPositiveNegative : rightJoystick.getY()); */
-    	double leftJoystickValueSQRD = Math.pow(Joystick.getY(),2);
+    	double leftJoystickValueSQRD = Math.pow(Joystick.getRawAxis(1),2);
     	
-    	//If joysticks are desired over the controller, change Joystick.getTwist() below to rightJoystick.getY().
-    	double rightJoystickValueSQRD = Math.pow(Joystick.getTwist(),2);
+    	//If joysticks are desired over the controller, change Joystick.getRawAxis(3) below to rightJoystick.getY().
+    	double rightJoystickValueSQRD = Math.pow(Joystick.getRawAxis(3),2);
     	
-    	if(leftJoystickValueSQRD > leftSpeed) leftSpeed = leftJoystickValueSQRD;
-    	if(rightJoystickValueSQRD > rightSpeed) rightSpeed = rightJoystickValueSQRD;
-    	
-    	robotDrive.tankDrive(leftSpeed * speedMax, rightSpeed * speedMax); 
+    	robotDrive.tankDrive(leftJoystickValueSQRD * speedMax * leftPositiveNegative, rightJoystickValueSQRD * speedMax * rightPositiveNegative); 
     }
 
     // Put methods for controlling this subsystem

@@ -24,8 +24,6 @@ public class OIDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.driveTrain.tankDrive(joystickLeft, joystickRight);
-    	Robot.driveTrain.leftSpeed -= Robot.driveTrain.deceleration;
-    	Robot.driveTrain.rightSpeed -= Robot.driveTrain.deceleration;
     }
 
     // Make this return true when this Command no longer needs to run execute()
