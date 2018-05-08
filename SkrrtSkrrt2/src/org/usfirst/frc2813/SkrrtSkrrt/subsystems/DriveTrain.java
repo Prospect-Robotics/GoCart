@@ -62,7 +62,7 @@ public class DriveTrain extends Subsystem {
         // Put code here to be run every loop
     }
     
-    public void tankDrive(Joystick leftJoystick, Joystick rightJoystick) {
+    public void tankDrive(Joystick Joystick, Joystick rightJoystick) {
     	/* double leftPositiveNegative = 0;
     	if(leftJoystick.getY() != 0) leftPositiveNegative = leftJoystick.getY()/Math.abs(leftJoystick.getY());
     	else leftPositiveNegative = 0;
@@ -73,8 +73,10 @@ public class DriveTrain extends Subsystem {
     	
     	robotDrive.tankDrive(Math.abs(leftJoystick.getY()) > speedMax ? speedMax*leftPositiveNegative : leftJoystick.getY(),
     						Math.abs(rightJoystick.getY()) > speedMax ? speedMax*rightPositiveNegative : rightJoystick.getY()); */
-    	double leftJoystickValueSQRD = Math.pow(leftJoystick.getY(),2);
-    	double rightJoystickValueSQRD = Math.pow(leftJoystick.getY(),2);
+    	double leftJoystickValueSQRD = Math.pow(Joystick.getY(),2);
+    	
+    	//If joysticks are desired over the controller, change Joystick.getTwist() below to rightJoystick.getY().
+    	double rightJoystickValueSQRD = Math.pow(Joystick.getTwist(),2);
     	
     	if(leftJoystickValueSQRD > leftSpeed) leftSpeed = leftJoystickValueSQRD;
     	if(rightJoystickValueSQRD > rightSpeed) rightSpeed = rightJoystickValueSQRD;
@@ -83,6 +85,7 @@ public class DriveTrain extends Subsystem {
     }
 
     // Put methods for controlling this subsystem
+    
     // here. Call these from Commands.
 
 }
