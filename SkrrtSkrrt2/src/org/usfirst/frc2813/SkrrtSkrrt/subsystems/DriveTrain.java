@@ -80,6 +80,22 @@ public class DriveTrain extends Subsystem {
     	
     	robotDrive.tankDrive(leftJoystickValueSQRD * speedMax * leftPositiveNegative, rightJoystickValueSQRD * speedMax * rightPositiveNegative); 
     }
+    
+    public void tankDrive(Joystick controller) {
+    	double leftPositiveNegative = 0;
+    	if(controller.getRawAxis(1) != 0) leftPositiveNegative = controller.getRawAxis(1)/Math.abs(controller.getRawAxis(1));
+    	else leftPositiveNegative = 0;
+    	
+    	double rightPositiveNegative = 0;
+    	if(controller.getRawAxis(3) != 0) rightPositiveNegative = controller.getRawAxis(3)/Math.abs(controller.getRawAxis(3));
+    	else rightPositiveNegative = 0;
+    	
+    	double leftSideValueSQRD = Math.pow(controller.getRawAxis(1),2);
+    	
+    	double rightSideValueSQRD = Math.pow(controller.getRawAxis(3),2);
+    	
+    	robotDrive.tankDrive(leftSideValueSQRD * speedMax * leftPositiveNegative, rightSideValueSQRD * speedMax * rightPositiveNegative); 
+    }
 
     // Put methods for controlling this subsystem
     

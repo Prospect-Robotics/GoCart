@@ -11,7 +11,11 @@
 
 package org.usfirst.frc2813.SkrrtSkrrt;
 
+import org.usfirst.frc2813.SkrrtSkrrt.Robot;
+import org.usfirst.frc2813.SkrrtSkrrt.commands.Fire;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
 /**
@@ -20,22 +24,18 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class OI {
 	
-    public Joystick leftJoystick;
-    public Joystick rightJoystick;
+    public Joystick controller;
 
     public OI() {
-
-        rightJoystick = new Joystick(1);
+    	Robot r = Robot.getInstance();
+    	new JoystickButton(controller, 5).whenPressed(new Fire(r.leftCannon));	//  Left cannon has been pressure tested
+		new JoystickButton(controller, 6).whenPressed(new Fire(r.rightCannon));	//  .Right cannon cannister is new; has NOT been pressure tested; uncomment when tested
         
-        leftJoystick = new Joystick(0);
+        controller = new Joystick(0);
     }
 
     public Joystick getLeftJoystick() {
-        return leftJoystick;
-    }
-
-    public Joystick getRightJoystick() {
-        return rightJoystick;
+        return controller;
     }
 }
 
