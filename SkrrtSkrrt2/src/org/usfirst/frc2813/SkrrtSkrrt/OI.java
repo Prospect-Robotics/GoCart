@@ -28,10 +28,11 @@ public class OI {
 
     public OI() {
     	Robot r = Robot.getInstance();
+    	controller = new Joystick(0);
     	new JoystickButton(controller, 5).whenPressed(new Fire(r.leftCannon));	//  Left cannon has been pressure tested
 		new JoystickButton(controller, 6).whenPressed(new Fire(r.rightCannon));	//  .Right cannon cannister is new; has NOT been pressure tested; uncomment when tested
         
-        controller = new Joystick(0);
+        
     }
 
     public Joystick getLeftJoystick() {
