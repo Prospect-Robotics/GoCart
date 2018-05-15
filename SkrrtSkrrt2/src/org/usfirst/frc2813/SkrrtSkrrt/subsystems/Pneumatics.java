@@ -29,6 +29,10 @@ public class Pneumatics extends Subsystem {
     @SuppressWarnings("unused")
 	public Pneumatics() {
     	switchSolenoid = new Solenoid(RobotMap.switchSolenoidPort);
+    	/*masterSolenoid = Optional.of(new Solenoid(RobotMap.masterSolenoidPort));
+    	if(masterSolenoid == null)
+    		masterSolenoid = Optional.empty();*/
+    	/* DOES WHAT'S ABOVE DO A SIMILAR OR BETTER OR SAME FUNCTION?*/
     	if(RobotMap.masterSolenoidPort != -1)
     		masterSolenoid = Optional.of(new Solenoid(RobotMap.masterSolenoidPort));
     	else

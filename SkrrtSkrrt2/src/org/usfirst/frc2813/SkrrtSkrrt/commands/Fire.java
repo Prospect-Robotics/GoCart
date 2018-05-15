@@ -1,6 +1,7 @@
 package org.usfirst.frc2813.SkrrtSkrrt.commands;
 
 import org.usfirst.frc2813.SkrrtSkrrt.Robot;
+import org.usfirst.frc2813.SkrrtSkrrt.RobotMap;
 import org.usfirst.frc2813.SkrrtSkrrt.subsystems.Cannon;
 
 import edu.wpi.first.wpilibj.Solenoid;
@@ -14,7 +15,7 @@ public class Fire extends TimedCommand {
 
 	private Cannon cannon;
 	public static double SOLENOID_ON_TIME = 0.25D;
-	
+	private Solenoid solenoid = new Solenoid(RobotMap.solenoidChanger);
     public Fire(Cannon cannon) {
     	super(SOLENOID_ON_TIME);
         requires(cannon);
@@ -25,6 +26,7 @@ public class Fire extends TimedCommand {
     // Called as the command starts executing
     protected void initialize() {
     	// disconnect the tank while firing:
+    	solenoid.set(!solenoid.get());
     	cannon.setPressurizing(false);
     	cannon.solenoid.set(true);
     }
