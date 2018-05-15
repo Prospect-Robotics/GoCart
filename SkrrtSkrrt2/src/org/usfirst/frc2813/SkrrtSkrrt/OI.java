@@ -12,10 +12,14 @@
 package org.usfirst.frc2813.SkrrtSkrrt;
 
 import org.usfirst.frc2813.SkrrtSkrrt.Robot;
+import org.usfirst.frc2813.SkrrtSkrrt.commands.Elevation;
 import org.usfirst.frc2813.SkrrtSkrrt.commands.Fire;
+import org.usfirst.frc2813.SkrrtSkrrt.commands.ToggleElevationSide;
+import org.usfirst.frc2813.SkrrtSkrrt.commands.ToggleSpeed;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 
 
 /**
@@ -31,7 +35,11 @@ public class OI {
     	controller = new Joystick(0);
     	new JoystickButton(controller, 5).whenPressed(new Fire(r.leftCannon));	//  Left cannon has been pressure tested
 		new JoystickButton(controller, 6).whenPressed(new Fire(r.rightCannon));	//  .Right cannon cannister is new; has NOT been pressure tested; uncomment when tested
-        
+        new JoystickButton(controller, 10).whenPressed(new ToggleSpeed());
+        new JoystickButton(controller, 1).whenPressed(new ToggleElevationSide(Direction.LEFT));
+        new JoystickButton(controller, 3).whenPressed(new ToggleElevationSide(Direction.RIGHT));
+        new JoystickButton(controller, 4).whileHeld(new Elevation(Direction.UP));
+        new JoystickButton(controller, 5).whileHeld(new Elevation(Direction.DOWN));
         
     }
 

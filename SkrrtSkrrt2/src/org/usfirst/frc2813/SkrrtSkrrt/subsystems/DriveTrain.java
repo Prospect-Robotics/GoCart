@@ -37,7 +37,7 @@ public class DriveTrain extends Subsystem {
     private final WPI_VictorSPX rightMotor = RobotMap.driveTrainRightMotor;
     private final RobotDrive robotDrive = RobotMap.driveTrainRobotDrive;
     
-    public static final double speedMax = 1;
+    public static double speedMax = 1;
     public static final double deceleration = 0.5;
     
     public static double leftSpeed = 0;
