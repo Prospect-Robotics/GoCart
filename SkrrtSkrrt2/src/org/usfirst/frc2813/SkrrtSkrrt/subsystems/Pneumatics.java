@@ -6,7 +6,6 @@ import org.usfirst.frc2813.SkrrtSkrrt.RobotMap;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /** Pneumatic components global to both shooters, i.e., the switch solenoid,
@@ -29,10 +28,6 @@ public class Pneumatics extends Subsystem {
     @SuppressWarnings("unused")
 	public Pneumatics() {
     	switchSolenoid = new Solenoid(RobotMap.switchSolenoidPort);
-    	/*masterSolenoid = Optional.of(new Solenoid(RobotMap.masterSolenoidPort));
-    	if(masterSolenoid == null)
-    		masterSolenoid = Optional.empty();*/
-    	/* DOES WHAT'S ABOVE DO A SIMILAR OR BETTER OR SAME FUNCTION?*/
     	if(RobotMap.masterSolenoidPort != -1)
     		masterSolenoid = Optional.of(new Solenoid(RobotMap.masterSolenoidPort));
     	else

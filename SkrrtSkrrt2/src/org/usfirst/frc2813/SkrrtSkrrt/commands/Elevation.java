@@ -2,7 +2,7 @@ package org.usfirst.frc2813.SkrrtSkrrt.commands;
 
 import org.usfirst.frc2813.SkrrtSkrrt.Direction;
 import org.usfirst.frc2813.SkrrtSkrrt.Robot;
-import org.usfirst.frc2813.SkrrtSkrrt.RobotMap;
+import org.usfirst.frc2813.SkrrtSkrrt.subsystems.CannonMotors;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
@@ -21,16 +21,19 @@ public class Elevation extends Command {
 
     	this.elevationDirection = d;
     }
-
-    // Called just before this Command runs the first time
+    
     protected void initialize() {
     	switch(Robot.cannonMotors.whichSide) {
     	case LEFT:	
-    		this.motor = RobotMap.driveTrainLeftMotor;
+    		this.motor = CannonMotors.leftMotor;
     		break;
     	case RIGHT:	
-        	this.motor = RobotMap.driveTrainLeftMotor;
+        	this.motor = CannonMotors.rightMotor;
     		break;
+    	case UP:
+    		throw new IllegalArgumentException("Direction UP passed for cannon side");
+    	case DOWN:
+    		throw new IllegalArgumentException("Direction DOWN passed for cannon side");
     	}
     }
 
@@ -38,10 +41,14 @@ public class Elevation extends Command {
     protected void execute() {
     	switch(elevationDirection) {
     	case UP:
-    		motor.set(1);
+    		motor.set(1);//1/-1 might be a bit too fast
     		break;
     	case DOWN:
     		motor.set(-1);
+    	case LEFT:
+    		throw new IllegalArgumentException("Direction LEFT passed for cannon elevation direction");
+    	case RIGHT:
+    		throw new IllegalArgumentException("Direction RIGHT passed for cannon elevation direction");
     	}
     }
 

@@ -5,7 +5,6 @@ import org.usfirst.frc2813.SkrrtSkrrt.RobotMap;
 import org.usfirst.frc2813.SkrrtSkrrt.subsystems.Cannon;
 
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.TimedCommand;
 
 /**

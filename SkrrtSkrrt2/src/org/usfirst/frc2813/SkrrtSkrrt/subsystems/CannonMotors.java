@@ -16,8 +16,8 @@ public class CannonMotors extends Subsystem {
     // here. Call these from Commands.
 	public Direction whichSide;
 	
-	private final WPI_VictorSPX leftMotor = RobotMap.elevationLeft;
-    private final WPI_VictorSPX rightMotor = RobotMap.elevationRight;
+	public static final WPI_VictorSPX leftMotor = RobotMap.elevationLeft;
+    public static final WPI_VictorSPX rightMotor = RobotMap.elevationRight;
 
     public void initDefaultCommand() {
         setDefaultCommand(null);
