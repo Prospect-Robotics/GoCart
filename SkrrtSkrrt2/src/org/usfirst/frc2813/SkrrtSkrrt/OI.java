@@ -38,8 +38,9 @@ public class OI {
         new JoystickButton(controller, 1).whenPressed(new ToggleElevationSide(Direction.LEFT));
         new JoystickButton(controller, 3).whenPressed(new ToggleElevationSide(Direction.RIGHT));
         new JoystickButton(controller, 4).whileHeld(new Elevation(Direction.UP));
-        new JoystickButton(controller, 5).whileHeld(new Elevation(Direction.DOWN));
-        
+        new JoystickButton(controller, 2).whileHeld(new Elevation(Direction.DOWN));
+        new JoystickButton(controller, 9).whenPressed(new Elevation(Direction.UP));//This will CRASH robot code intentionally
+        new JoystickButton(controller, 9).whenPressed(new Elevation(Direction.DOWN));//This will CRASH robot code intentionally
     }
 
     public Joystick getLeftJoystick() {

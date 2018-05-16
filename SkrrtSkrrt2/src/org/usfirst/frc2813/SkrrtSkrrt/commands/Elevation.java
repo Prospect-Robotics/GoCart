@@ -2,10 +2,12 @@ package org.usfirst.frc2813.SkrrtSkrrt.commands;
 
 import org.usfirst.frc2813.SkrrtSkrrt.Direction;
 import org.usfirst.frc2813.SkrrtSkrrt.Robot;
+import org.usfirst.frc2813.SkrrtSkrrt.RobotMap;
 import org.usfirst.frc2813.SkrrtSkrrt.subsystems.CannonMotors;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -14,11 +16,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class Elevation extends Command {
 	private Direction elevationDirection;
 	private WPI_VictorSPX motor;
-	
+	private DigitalInput highLimitSwitch;
+	private DigitalInput lowLimitSwitch;
 	
     public Elevation(Direction d) {
         requires(Robot.cannonMotors);
-
     	this.elevationDirection = d;
     }
     
@@ -26,9 +28,13 @@ public class Elevation extends Command {
     	switch(Robot.cannonMotors.whichSide) {
     	case LEFT:	
     		this.motor = CannonMotors.leftMotor;
+    		this.highLimitSwitch = RobotMap.leftHighLimitSwitch;
+    		this.lowLimitSwitch = RobotMap.leftLowLimitSwitch;
     		break;
     	case RIGHT:	
         	this.motor = CannonMotors.rightMotor;
+    		this.highLimitSwitch = RobotMap.rightHighLimitSwitch;
+    		this.lowLimitSwitch = RobotMap.rightLowLimitSwitch;
     		break;
     	case UP:
     		throw new IllegalArgumentException("Direction UP passed for cannon side");
@@ -41,10 +47,12 @@ public class Elevation extends Command {
     protected void execute() {
     	switch(elevationDirection) {
     	case UP:
-    		motor.set(0.2);
+    		if (!highLimitSwitch.get())
+    			motor.set(0.2);
     		break;
     	case DOWN:
-    		motor.set(-0.2);
+    		if (!lowLimitSwitch.get())
+    			motor.set(-0.2);
     	case LEFT:
     		throw new IllegalArgumentException("Direction LEFT passed for cannon elevation direction");
     	case RIGHT:
