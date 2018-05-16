@@ -41,10 +41,10 @@ public class Elevation extends Command {
     protected void execute() {
     	switch(elevationDirection) {
     	case UP:
-    		motor.set(1);//1/-1 might be a bit too fast
+    		motor.set(0.2);
     		break;
     	case DOWN:
-    		motor.set(-1);
+    		motor.set(-0.2);
     	case LEFT:
     		throw new IllegalArgumentException("Direction LEFT passed for cannon elevation direction");
     	case RIGHT:
