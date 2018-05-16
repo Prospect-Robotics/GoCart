@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Uses motor to change the elevation of the cannon
  */
 public class Elevation extends Command {
 	private Direction elevationDirection;

@@ -8,7 +8,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * Defines the two motors elevating the cannons in a subsystem
  */
 public class CannonMotors extends Subsystem {
 
