@@ -13,7 +13,7 @@ public class ToggleSpeed extends InstantCommand {
     }
     protected void initialize() {
     	if (DriveTrain.speedMax == 1) {
-    		DriveTrain.speedMax = 0.5;
+    		DriveTrain.speedMax = 0.65;
     	} else {
     		DriveTrain.speedMax = 1;
     	}
